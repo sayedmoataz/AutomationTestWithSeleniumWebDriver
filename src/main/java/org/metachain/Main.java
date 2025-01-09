@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Main {
-    private static final String WEBSITE_URL = "https://appleslice.vercel.app";
+    private static final String WEBSITE_URL = "YOUR_URL";
     private static final String USERNAME = "user";
     private static final String USER_EMAIL = "user@user.user";
     private static final String PASSWORD = "password";
