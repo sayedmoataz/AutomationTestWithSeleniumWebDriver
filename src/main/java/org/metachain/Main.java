@@ -7,11 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Main {
-    private static final String WEBSITE_URL = "YOUR_URL";
-    private static final String USERNAME = "user";
-    private static final String USER_EMAIL = "user@user.user";
-    private static final String PASSWORD = "password";
-    private static final String USER_NUMBER = "01111111111";
+    private static final String WEBSITE_URL = "https://appleslice.vercel.app";
+    private static final String USERNAME = "S@yedMoataz";
+    private static final String USER_EMAIL = "email@gmail.com";
+    private static final String PASSWORD = "123456789";
+    private static final String USER_NUMBER = "123456789";
     private static final int COUNTRY_NUMBER_ID = 56;
 
     public static void main(String[] args) {
