@@ -1,9 +1,6 @@
 package org.metachain.drivers;
 
-import org.metachain.drivers.DriversManagers.ChromeDriverManager;
-import org.metachain.drivers.DriversManagers.EdgeDriverManager;
-import org.metachain.drivers.DriversManagers.FirefoxDriverManager;
-import org.metachain.drivers.DriversManagers.SafariDriverManager;
+import org.metachain.drivers.DriversManagers.*;
 
 public class DriverFactory {
     public static DriverManager getDriverManager(String browserType) {
@@ -12,6 +9,7 @@ public class DriverFactory {
             case "firefox" -> new FirefoxDriverManager();
             case "safari" -> new SafariDriverManager();
             case "edge" -> new EdgeDriverManager();
+            case "headless" -> new PhantomJsDriverManager();
             default -> throw new IllegalArgumentException("unsupported browser type: " + browserType);
         };
     }
