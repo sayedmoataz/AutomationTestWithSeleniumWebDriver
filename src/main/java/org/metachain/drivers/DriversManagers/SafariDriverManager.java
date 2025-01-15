@@ -9,4 +9,10 @@ public class SafariDriverManager implements DriverManager {
     public WebDriver getDriver() {
         return new SafariDriver();
     }
+
+    @Override
+    public void saveCookies(WebDriver driver) {}
+
+    @Override
+    public void loadCookies(WebDriver driver) {}
 }

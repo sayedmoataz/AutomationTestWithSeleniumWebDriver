@@ -10,4 +10,10 @@ public class EdgeDriverManager implements DriverManager {
         System.setProperty("webdriver.edge.driver", System.getProperty("user.dir") + "/src/main/resources/msedgedriver");
         return new EdgeDriver();
     }
+
+    @Override
+    public void saveCookies(WebDriver driver) {}
+
+    @Override
+    public void loadCookies(WebDriver driver) {}
 }

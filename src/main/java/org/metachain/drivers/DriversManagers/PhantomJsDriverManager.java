@@ -19,4 +19,10 @@ public class PhantomJsDriverManager implements DriverManager {
 
         return new PhantomJSDriver(caps);
     }
+
+    @Override
+    public void saveCookies(WebDriver driver) {}
+
+    @Override
+    public void loadCookies(WebDriver driver) {}
 }
