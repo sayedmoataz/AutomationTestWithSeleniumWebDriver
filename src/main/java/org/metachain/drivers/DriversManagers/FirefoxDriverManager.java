@@ -10,4 +10,10 @@ public class FirefoxDriverManager implements DriverManager {
         System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/resources/geckodriver");
         return new FirefoxDriver();
     }
+
+    @Override
+    public void saveCookies(WebDriver driver) {}
+
+    @Override
+    public void loadCookies(WebDriver driver) {}
 }

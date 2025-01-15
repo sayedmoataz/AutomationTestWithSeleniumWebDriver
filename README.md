@@ -1,6 +1,7 @@
 # Selenium Web Automation Project
 
-A Java-based Selenium WebDriver project that demonstrates automated web testing using the Page Factory design pattern. This project specifically automates the signup process for a web application.
+A Java-based Selenium WebDriver project that demonstrates automated web testing using the Page Factory design pattern.
+This project specifically automates the signup process for a web application.
 
 ## Features
 
@@ -12,13 +13,15 @@ A Java-based Selenium WebDriver project that demonstrates automated web testing 
 ## Prerequisites
 
 Before running this project, make sure you have the following installed:
+
 - Java JDK 23 or higher
 - Maven
 - Chrome/Firefox/Safari browser
 - Corresponding WebDriver executables:
-  - ChromeDriver
-  - GeckoDriver (for Firefox)
-  - SafariDriver (comes built-in with macOS)
+    - ChromeDriver
+    - GeckoDriver (for Firefox)
+    - SafariDriver (comes built-in with macOS)
+    - EdgeDriver
 
 ## Project Structure
 
@@ -57,6 +60,7 @@ private static final int COUNTRY_NUMBER_ID = 56; // from custom dropbox
 ## Running the Tests
 
 1. To run with a different browser, modify the `browserType` variable in `Main.java`:
+
 ```java
 String browserType = "firefox"; // or "safari"
 ```
