@@ -29,7 +29,7 @@ public class BaseOperation {
         DriverManager driverManager = DriverFactory.getDriverManager(BROWSER_TYPE);
         driver = driverManager.getDriver();
         driver.navigate().to(WEBSITE_URL);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     protected void tearDown() {

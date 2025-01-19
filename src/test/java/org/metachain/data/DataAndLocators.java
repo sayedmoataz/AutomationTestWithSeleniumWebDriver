@@ -33,7 +33,7 @@ public class DataAndLocators {
 
     // Test data
     public static final String USER_EMAIL = "khaled.mofed2@gmail.com";
-    public static final String PASSWORD = "qweQWE";
+    public static final String PASSWORD = "qweQWE123";
     public static final String LOGIN_SUCCESS_MESSAGE = "success";
     public static final String WELCOME_BACK_MESSAGE = "Welcome Back!";
     public static final String SIGNIN_PAGE_URL = "https://appleslice.vercel.app/SignIn";
