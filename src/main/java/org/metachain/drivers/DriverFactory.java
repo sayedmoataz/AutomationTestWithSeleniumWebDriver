@@ -9,7 +9,6 @@ public class DriverFactory {
             case "firefox" -> new FirefoxDriverManager();
             case "safari" -> new SafariDriverManager();
             case "edge" -> new EdgeDriverManager();
-            case "headless" -> new PhantomJsDriverManager();
             default -> throw new IllegalArgumentException("unsupported browser type: " + browserType);
         };
     }

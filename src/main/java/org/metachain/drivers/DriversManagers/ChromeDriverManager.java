@@ -2,11 +2,15 @@ package org.metachain.drivers.DriversManagers;
 
 import org.metachain.drivers.DriverManager;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Set;
 
 public class ChromeDriverManager implements DriverManager {
@@ -14,10 +18,15 @@ public class ChromeDriverManager implements DriverManager {
 
     @Override
     public WebDriver getDriver() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/chromedriver");
-        // ChromeOptions options = new ChromeOptions();
-        // options.addArguments("--headless");
-        // return new ChromeDriver(options);
+//        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/resources/chromedriver");
+//         ChromeOptions options = new ChromeOptions();
+//         options.addArguments("--headless=new");
+//         options.addArguments("--disable-gpu");
+//         options.addArguments("--no-sandbox");
+//         options.addArguments("--disable-extensions");
+//         options.addArguments("--disable-dev-shm-usage");
+//         options.addArguments(COOKIE_FILE_PATH);
+//         return new ChromeDriver(options);
         return new ChromeDriver();
     }
 
