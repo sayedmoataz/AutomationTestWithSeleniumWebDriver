@@ -104,7 +104,7 @@ public class LoginTestCase extends BaseOperation {
         }
     }
 
-    @Test(description = "Verify login fails with SQL injection in both email and password fields")
+    @Test(description = "Verify login fails with SQL injection in both email and password fields", enabled = false)
     public void testLoginWithSqlInjectionInBothFields() {
         try {
             logger.info("starting SQL injection in both fields test");

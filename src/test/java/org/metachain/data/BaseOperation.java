@@ -16,9 +16,9 @@ import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.Objects;
 
-import static org.metachain.data.DataAndLocators.BROWSER_TYPE;
-import static org.metachain.data.DataAndLocators.WEBSITE_URL;
+import static org.metachain.data.DataAndLocators.*;
 
 public class BaseOperation {
 
@@ -82,6 +82,56 @@ public class BaseOperation {
                 Thread.currentThread().interrupt();
             }
         }
+        wait.until(driver -> {
+            String actualValue = (String) js.executeScript(
+                    "return arguments[0].value.replace(/\\D/g, '');", element
+            );
+            String expectedValue = phoneNumber.replaceAll("\\D", "");
+            return actualValue.endsWith(expectedValue);
+        });
+    }
+
+    protected void verifyPhoneNumber(By locator, String phoneNumber, String countryCode) {
+        WebElement element = driver.findElement(locator);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        try {
+            WebElement flagDropdown = driver.findElement(By.className("flag-dropdown"));
+            flagDropdown.click();
+            Thread.sleep(100);
+            flagDropdown.click();
+        } catch (Exception e) {
+            System.out.println("Error interacting with flag dropdown: " + e.getMessage());
+        }
+
+        element.clear();
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
+        js.executeScript("arguments[0].value = '';", element);
+
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+
+        if (countryCode != null && !countryCode.isEmpty()) {
+            if (!countryCode.startsWith("+")) {
+                countryCode = "+" + countryCode;
+            }
+            element.sendKeys(countryCode);
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        for (char c : phoneNumber.toCharArray()) {
+            element.sendKeys(String.valueOf(c));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
         wait.until(driver -> {
             String actualValue = (String) js.executeScript(
                     "return arguments[0].value.replace(/\\D/g, '');", element
@@ -157,6 +207,21 @@ public class BaseOperation {
         } catch (IOException e) {
             System.err.println("Failed to take screenshot: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    protected void verifyNavigationURL(String endPoint) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                webDriver -> Objects.equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState"), "complete")
+        );
+        String expectedUrl = WEBSITE_URL + endPoint;
+        wait.until(ExpectedConditions.urlToBe(expectedUrl));
+        String actualUrl = driver.getCurrentUrl();
+        assert actualUrl != null;
+        if (actualUrl.equals(expectedUrl)) {
+            System.out.println("Navigation successful! URL matches.");
+        } else {
+            System.out.println("Navigation failed! URL does not match. url is: " + expectedUrl);
         }
     }
 }
