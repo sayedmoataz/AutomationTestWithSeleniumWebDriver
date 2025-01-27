@@ -2,6 +2,7 @@ package Cases;
 
 import org.metachain.data.BaseOperation;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,9 +16,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static org.metachain.data.DataAndLocators.*;
 
@@ -78,17 +78,19 @@ public class SignupTestCase extends BaseOperation {
         try {
             checkCheckbox(ACCEPT_DISCLAIMER);
             clickElement(CREATE_ACCOUNT_BUTTON);
-            verifyNavigationURL("/Disclaimer");
-            clickElement(SIGN_UP_BUTTON);
             verifyNavigationURL("/SignUpAccountCreated");
+            clickElement(SIGN_UP_BUTTON);
         } catch (Exception e) {
             throw new RuntimeException("Account finalization failed: " + e.getMessage());
         }
     }
 
-    private void verifySuccessfulSignup() {
-        clickElement(SIGN_UP_BUTTON);
-        verifyNavigationURL("/TabNavigator");
+    private void verifySuccessfulSignup()  {
+        try {
+            verifyNavigationURL("/TabNavigator");
+        } catch (Exception e) {
+            throw new RuntimeException("verifySuccessfulSignup: " + e.getMessage());
+        }
     }
 
     private void navigateToSignUpPage() {

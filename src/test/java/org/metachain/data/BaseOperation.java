@@ -163,15 +163,6 @@ public class BaseOperation {
         }
     }
 
-    protected void assertTextEqualsOnNewPage(String testCaseName,String expectedUrlPart, By locator, String expectedText, String errorMessage) {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        wait.until(ExpectedConditions.urlContains(expectedUrlPart));
-        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-        String actualText = element.getText();
-        Assert.assertEquals(actualText, expectedText, errorMessage);
-        System.out.println(testCaseName + " Passed! \nExpected: '" + expectedText + "' \nActual: '" + actualText + "'");
-    }
-
     protected boolean isElementPresent(By locator) {
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(locator));
@@ -188,10 +179,6 @@ public class BaseOperation {
         } catch (TimeoutException e) {
             return false;
         }
-    }
-
-    protected void waitForUrlChange(String expectedUrl) {
-        wait.until(ExpectedConditions.urlContains(expectedUrl));
     }
 
     protected void takeScreenshot(WebDriver driver) {
@@ -219,10 +206,25 @@ public class BaseOperation {
         String actualUrl = driver.getCurrentUrl();
         assert actualUrl != null;
         if (actualUrl.equals(expectedUrl)) {
-            System.out.println("Navigation successful! URL matches.");
+            System.out.println("navigation successful\tURL matches.\t"+expectedUrl);
         } else {
             System.out.println("Navigation failed! URL does not match. url is: " + expectedUrl);
         }
     }
-}
 
+    protected void scrollUntilElementVisible(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        while (true) {
+            try {
+                WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+                if (element.isDisplayed()) {
+                    break;
+                }
+            } catch (Exception e) {
+                js.executeScript("window.scrollBy(0, 200);");
+            }
+        }
+    }
+}
